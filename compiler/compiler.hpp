@@ -1,5 +1,5 @@
-#include "include.hpp"
-#include "tokenizer.hpp"
+// #include "include.hpp"
+#include "../tokenizer/tokenizer.hpp"
 
 class Compiler {
 private:

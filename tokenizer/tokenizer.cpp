@@ -17,6 +17,7 @@ void Tokenizer::load_file(const char *path) {
 			break;
 		file_contents+=c;
 	}
+	file.close();
 }
 /* checking functions because C++ doesnt have pattern matching */
 Token Tokenizer::tokenize_open_paren(char c) {
