@@ -16,7 +16,7 @@ Token_Type::Token_Type() {
 
 /* Token */
 
-Token::Token(std::string lexeme,Token_Type type) {
+Token::Token(std::string literal,Token_Type type) {
 	this->literal = literal;
 	this->type = Token_Type(type);
 };
