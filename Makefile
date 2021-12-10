@@ -12,7 +12,7 @@ TARGET = main
 R = ./
 CLS = clear
 
-SOURCES =$(wildcard *.cpp tokenizer/*.c)
+SOURCES =$(wildcard *.cpp tokenizer/*.cpp compiler/*.cpp)
 ASMSOURCES =$(wildcard *.s)
 
 .PHONY: all clean debug pretty
