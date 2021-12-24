@@ -1,63 +1,58 @@
+#ifndef _TOKEN_HPP_
+#define _TOKEN_HPP_
+
 #include <string>
 #include <vector>
 #include <variant>
 #include <functional>
+#include <regex>
 
-#ifndef _TOKEN_HPP_
-#define _TOKEN_HPP_
-
-namespace Lisp_Atom {
-	using integer = int32_t;
+namespace Literal_Alias {
+	using integer = int;
 	using floating_point = float;
 	using string = std::string;
 	using character = char;
 	using boolean = bool;
-	struct symbol :std::string{}; 
+	struct symbol :std::string{};
 	// sorry for the inheritance couldnt think of a way to do this properly 
 }
 
-using Atom_Type = std::variant<
-		Lisp_Atom::integer,
-		Lisp_Atom::boolean,
-		Lisp_Atom::character,
-		Lisp_Atom::floating_point,
-		Lisp_Atom::string,
-		Lisp_Atom::symbol
-		>;
+using Literal_Type = std::variant<
+	Literal_Alias::integer,
+	Literal_Alias::character,
+	Literal_Alias::boolean,
+	Literal_Alias::floating_point,
+	Literal_Alias::string,
+	Literal_Alias::symbol
+	>;
 
-enum class Kind {
-	Open,
-	Close,
-	Dot,
-	Quote,
-	Atom,
-	Double_Quote,
-	Hash,
-	Whitespace,
-	Undefined
+enum class Token_Variant : int8_t {
+		Undefined = -1,
+		Open,
+		Close,      
+		Keyword,	
+		Identifier, 
+		Literal,    
+		Whitespace,
 };
 
-class Token_Type {
-private:
-
-public:
-	Kind kind;
-	Atom_Type atom;
-	Token_Type(Kind,Atom_Type);
-	Token_Type(Kind);
-	Token_Type();
+struct Token_Type {
+	Literal_Type type;
+	Token_Variant variant;
+	Token_Type(Token_Variant variant, Literal_Type type);
+	Token_Type(Token_Variant variant);
 };
 
 class Token {
 private:
-	std::string literal;
+	std::string lexeme;
 	Token_Type type;
+public:
+	Token(std::string lexeme,Token_Type type);
+	Token(std::string lexeme);
+	Token() = default;
 
-	public:
-	Token(std::string literal,Token_Type type);
-	Token();
-	std::string get_literal();
+	std::string get_lexeme();
 	Token_Type get_type();
 };
-
 #endif

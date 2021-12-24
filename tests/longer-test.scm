@@ -2,3 +2,5 @@
 (define (neg n) ;; all of these lines will be ignored
     (not (x)))  ;; see hopefully they will |(hope this dont work)
 ; this function right here returns the inverse of
+(define x 10)
+(print x)

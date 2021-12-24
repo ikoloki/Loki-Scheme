@@ -1,0 +1,5 @@
+{
+    "clang.cxxflags": [
+        "-std=c++17"
+    ]
+}
